@@ -1,1 +1,50 @@
 # PolicyExplained
+
+User Story:
+As an American concerned about the information available, I want to access accurate and reliable details about the federal level of our government all in one place.
+
+Legislation Search:
+
+WHEN I use the search bar for keywords, THEN legislation matching my keywords appears on a search results screen.
+User Login and Tracking:
+
+WHEN I am able to log in, THEN I am able to save legislation information so that I can track it.
+Elected Officials Information:
+
+WHEN I am able to see all current elected officials serving in the offices of President, Vice President, Congress, and SCOTUS, THEN I am able to save these officials to my profile so that I can see who the officials in my districts are.
+Homepage News Articles:
+
+WHEN I click on the homepage, THEN there will be two boxes inside each containing a current news article related to election news on the federal level.
+Hamburger Menu Navigation:
+
+WHEN I click on the hamburger menu on the top left of the page, THEN I am able to see a menu with options to go to pages for House of Representatives Members, Senators, Office of the President, Office of the Vice President, SCOTUS, Current Legislation, Previous Legislation, and Congressional News.
+Filtering and Sorting:
+
+WHEN I view legislation or elected officials, THEN I can filter and sort them by various criteria such as date, topic, status, state, party, or seniority.
+Notifications:
+
+WHEN I track legislation or save officials, THEN I can opt to receive email or SMS notifications for updates.
+Interactive Maps:
+
+WHEN I view the district information, THEN I can see an interactive map showing the districts of the elected officials.
+Educational Resources:
+
+WHEN I visit the educational resources section, THEN I can access explanations of how legislation is made and the roles of different government branches, along with FAQs and a glossary.
+Personalized Dashboard:
+
+WHEN I log in, THEN I can see a personalized dashboard with my tracked legislation and saved officials at a glance.
+Accessibility Options:
+
+WHEN I need accessibility options, THEN I can choose larger text, high contrast, and screen reader compatibility settings.
+Mobile Compatibility:
+
+WHEN I access the website on a mobile device, THEN the site is fully responsive and functions well.
+Data Visualization:
+
+WHEN I view legislative data, THEN I can see visual summaries such as pie charts or bar graphs.
+Historical Data:
+
+WHEN I visit the historical data section, THEN I can access past legislation and elected officials' information.
+Security:
+
+WHEN I use the website, THEN my data is protected with strong security measures including HTTPS, secure login mechanisms, and regular security audits.
