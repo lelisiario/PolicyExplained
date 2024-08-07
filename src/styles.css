@@ -1,0 +1,24 @@
+main {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/* Styles for other components */
+p {
+  line-height: 1.6;
+}
+
+button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #357ab7;
+}
