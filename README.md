@@ -96,8 +96,6 @@ Voting Records:
 	•	WHEN I view an official’s profile,
 	•	THEN I can see their voting records.
 
-Post-MVP Feature: AI Chatbot
-
 AI Chatbot:
 
 	•	WHEN I visit the website,
