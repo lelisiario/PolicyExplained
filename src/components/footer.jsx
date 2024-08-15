@@ -1,25 +1,25 @@
-import React from 'react';
-import './footer.css'; // Import the CSS file for footer styling
+// import React from 'react';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
-const Footer = () => {
-  return (
-    <footer className="footer">
-      <div className="footer-links">
-        <a href="https://github.com/lelisiario" target="_blank" rel="noopener noreferrer" className="footer-link">
-          <i className="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/laurenelisiario/" target="_blank" rel="noopener noreferrer" className="footer-link">
-          <i className="fab fa-linkedin"></i>
-        </a>
-        <a href="https://x.com/BeachsideWebDev" target="_blank" rel="noopener noreferrer" className="footer-link">
-          <i className="fab fa-twitter"></i>
-        </a>
-      </div>
-      <div className="footer-text">
-        &copy; {new Date().getFullYear()} Beachside Web Development. All rights reserved.
-      </div>
-    </footer>
-  );
-};
+// const Footer = () => {
+//   return (
+//     <footer className="footer">
+//       <div className="footer-links"> {/* Changed to match CSS */}
+//         <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer">
+//           <FontAwesomeIcon icon={faGithub} className="footer-link" />
+//         </a>
+//         <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer">
+//           <FontAwesomeIcon icon={faLinkedin} className="footer-link" />
+//         </a>
+//         <a href="https://twitter.com/your-twitter" target="_blank" rel="noopener noreferrer">
+//           <FontAwesomeIcon icon={faTwitter} className="footer-link" />
+//         </a>
+//       </div>
+//       <p className="footer-text">© 2024 Policy Explained</p>
+//     </footer>
+//   );
+// };
 
-export default Footer;
+// export default Footer;
+

@@ -1,24 +1,22 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import ErrorPage from './pages/error';
+import Footer from './components/footer'; // Importing the Footer component
 
 function App() {
   return (
-    <>
-      <main>
+    <Router>
+      <div className="app">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
-      </main>
-    </>
-  );
-}
-
-function HomePage() {
-  return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      <p>This is the home page of your React application.</p>
-    </div>
+        <Footer /> {/* Adding the Footer component */}
+      </div>
+    </Router>
   );
 }
 
