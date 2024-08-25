@@ -1,23 +1,26 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import ErrorPage from './pages/error';
-import Footer from './components/footer'; // Importing the Footer component
+import React, { useState } from 'react';
+import Header from './components/header';
+import Sidebar from './components/sidebar';
+import "./styles/index.css";
 
 function App() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
   return (
-    <Router>
-      <div className="app">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-        <Footer /> {/* Adding the Footer component */}
-      </div>
-    </Router>
+    <div className="app">
+      <Header handleDrawerToggle={handleDrawerToggle} />
+      <Sidebar isOpen={isDrawerOpen} handleDrawerToggle={handleDrawerToggle} />
+      <main className="content">
+        <h1>Welcome to Policy Explained</h1>
+        <p>Your source for reliable federal government information.</p>
+      </main>
+    </div>
   );
 }
 
 export default App;
+
