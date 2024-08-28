@@ -1,4 +1,5 @@
 import React from 'react';
+// import HeaderStyles from '../styles/header.css'; --Separate file import for header styles
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
