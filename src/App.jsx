@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Sidebar from '../src/components/sidebar'; // Adjust the path if necessary
 import About from './pages/about';
 import CongressWhiteHouseMap from './pages/congressWhiteHouseMap';
@@ -16,7 +16,7 @@ import UserDistMap from './pages/userDistMap.jsx';
 
 function App() {
   return (
-    <Router>
+    <>
       <Sidebar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,7 +32,7 @@ function App() {
         <Route path="/user-dist-map" element={<UserDistMap />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-    </Router>
+      </>
   );
 }
 
