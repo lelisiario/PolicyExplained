@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/header.jsx'
-import Sidebar from './components/sidebar.jsx'; // Adjust path if necessary
+import Sidebar from './components/sidebar.jsx';
 import About from './pages/about';
 import CongressWhiteHouseMap from './pages/congressWhiteHouseMap';
 import Dashboard from './pages/dashboard';

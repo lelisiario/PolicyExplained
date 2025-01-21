@@ -2,12 +2,25 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Modal, Box, Button, TextField } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import { auth } from '../firebase'; // Firebase import configuration
 
 const Header = ({ handleDrawerToggle, onSearch }) => {
   const [searchText, setSearchText] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  // Toggle the modal
+  const toggleModal = () => setModalOpen(!modalOpen);
+
+  // Handle the search functionality
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchText.trim()) {
@@ -16,24 +29,57 @@ const Header = ({ handleDrawerToggle, onSearch }) => {
     }
   };
 
-  const toggleModal = () => setModalOpen(!modalOpen);
+  // Handle Google Sign In
+  const handleGoogleLogin = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log('Google Sign-In Successful:', result.user);
+        toggleModal(); // Close modal after successful login
+      })
+      .catch((error) => {
+        console.error('Error during Google Sign-In:', error.message);
+      });
+  };
+
+  // Handle Manual Sign Up
+  const handleSignUp = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        console.log('User Signed Up Successfully:', result.user);
+        toggleModal(); // Close modal after successful sign-up
+      })
+      .catch((error) => {
+        console.error('Error during Sign-Up:', error.message);
+      });
+  };
+
+  // Handle Manual Sign In
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        console.log('User Signed In Successfully:', result.user);
+        toggleModal(); // Close modal after successful sign-in
+      })
+      .catch((error) => {
+        console.error('Error during Sign-In:', error.message);
+      });
+  };
 
   return (
     <AppBar position="fixed" style={{ backgroundColor: '#003049' }}>
       <Toolbar style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={handleDrawerToggle}>
+        {/* Sidebar Toggle Button */}
+        <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerToggle}>
           <MenuIcon />
         </IconButton>
 
+        {/* Site Title */}
         <Typography variant="h6" style={{ color: '#FFFFFF' }}>
           Policy Explained
         </Typography>
 
-        {/* Right Section: Search Bar and Sign-in/Sign-up */}
+        {/* Search Bar and Sign-In/Sign-Up */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           {/* Search Bar */}
           <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center' }}>
@@ -50,14 +96,14 @@ const Header = ({ handleDrawerToggle, onSearch }) => {
             </Button>
           </form>
 
-          {/* Sign-in/Sign-up Button */}
+          {/* Sign-In/Sign-Up Button */}
           <Button variant="outlined" color="inherit" onClick={toggleModal}>
             Sign In / Sign Up
           </Button>
         </div>
       </Toolbar>
 
-      {/* Modal for Sign-in/Sign-up */}
+      {/* Modal for Sign-In/Sign-Up */}
       <Modal open={modalOpen} onClose={toggleModal}>
         <Box
           sx={{
@@ -74,30 +120,57 @@ const Header = ({ handleDrawerToggle, onSearch }) => {
         >
           <h2 style={{ textAlign: 'center' }}>Sign In / Sign Up</h2>
           <form>
+            {/* Email Input */}
             <TextField
               label="Email"
               type="email"
               fullWidth
               margin="normal"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
+
+            {/* Password Input */}
             <TextField
               label="Password"
               type="password"
               fullWidth
               margin="normal"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" variant="contained" fullWidth>
+
+            {/* Manual Sign-In Button */}
+            <Button
+              type="button"
+              variant="contained"
+              fullWidth
+              onClick={handleSignIn}
+              style={{ marginTop: '10px' }}
+            >
               Sign In
             </Button>
-            <Button variant="outlined" fullWidth style={{ marginTop: '10px' }}>
+
+            {/* Manual Sign-Up Button */}
+            <Button
+              type="button"
+              variant="outlined"
+              fullWidth
+              onClick={handleSignUp}
+              style={{ marginTop: '10px' }}
+            >
               Sign Up
             </Button>
+
+            {/* Google Sign-In Button */}
             <Button
+              type="button"
               variant="contained"
               color="secondary"
               fullWidth
+              onClick={handleGoogleLogin}
               style={{ marginTop: '10px' }}
             >
               Sign In with Google
@@ -110,4 +183,5 @@ const Header = ({ handleDrawerToggle, onSearch }) => {
 };
 
 export default Header;
+
 
