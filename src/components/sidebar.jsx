@@ -33,9 +33,9 @@ const Sidebar = ({ isOpen, handleDrawerToggle }) => {
         <ListItem button component={Link} to="/home">
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button component={Link} to="/login">
+        {/* <ListItem button component={Link} to="/login">
           <ListItemText primary="Log In / Register" />
-        </ListItem>
+        </ListItem> */}
         <ListItem button component={Link} to="/dashboard">
           <ListItemText primary="Dashboard" />
         </ListItem>
