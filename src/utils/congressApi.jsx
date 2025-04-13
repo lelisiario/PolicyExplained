@@ -1,3 +1,5 @@
+const API_KEY = import.meta.env.VITE_CONGRESS_API_KEY;
+
 export const fetchBills = async (query) => {
   console.log("Fetching bills for query:", query); // ✅ Debug
   try {
