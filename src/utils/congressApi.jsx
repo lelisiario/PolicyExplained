@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://gpo.congress.gov/";
+const API_BASE_URL = "https://api.congress.gov/v3";
 const API_KEY = process.env.VITE_CONGRESS_API_KEY;
 
 /**
