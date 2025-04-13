@@ -1,5 +1,5 @@
 const API_BASE_URL = "https://gpo.congress.gov/";
-const API_KEY = process.env.REACT_APP_CONGRESS_API_KEY;
+const API_KEY = process.env.VITE_CONGRESS_API_KEY;
 
 /**
  * Fetch recent bills from Congress.gov API.
