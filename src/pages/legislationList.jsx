@@ -1,12 +1,32 @@
-import React from 'react';
+import { useEffect, useState } from "react";
+import { fetchBills } from "../utils/congressApi";
 
-function LegislationList() {
+const LegislationList = () => {
+  const [bills, setBills] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadBills = async () => {
+      const data = await fetchBills("climate"); // sample search
+      if (data) setBills(data.bills || []);
+      setLoading(false);
+    };
+    loadBills();
+  }, []);
+
+  if (loading) return <p>Loading bills...</p>;
+
   return (
     <div>
-      <h1>Legislation List</h1>
-      <p>View a list of all legislation here.</p>
+      <h2>Recent Legislation</h2>
+      <ul>
+        {bills.map((bill, index) => (
+          <li key={index}>{bill.title || "No Title"}</li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
 
 export default LegislationList;
+
