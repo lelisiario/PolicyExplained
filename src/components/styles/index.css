@@ -1,0 +1,48 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+.app {
+  display: flex;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 80px 20px 20px 20px;
+}
+
+.header {
+  height: 64px; /* Ensure this matches the top value in the sidebar */
+  width: 100%;
+  background-color: #003049;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Make sure the header stays on top */
+}
+
+.sidebar {
+  width: 250px;
+  height: calc(100vh - 64px); /* Adjusting the height of the sidebar */
+  position: fixed;
+  top: 64px; /* Start the sidebar right below the header */
+  left: 0;
+  background-color: rgba(253, 214, 134, 0.7); /* Your sidebar color with opacity */
+  color: #252D30;
+  padding: 10px;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
