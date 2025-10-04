@@ -36,48 +36,48 @@ const Sidebar = ({ isOpen, handleDrawerToggle }: SidebarProps) => {
       }}
     >
       <List>
-        <ListItem button component={Link} to="/home">
+        <ListItem component={Link} to="/home">
           <ListItemText primary="Home" />
         </ListItem>
         {/* <ListItem button component={Link} to="/login">
           <ListItemText primary="Log In / Register" />
         </ListItem> */}
-        <ListItem button component={Link} to="/dashboard">
+        <ListItem component={Link} to="/dashboard">
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button component={Link} to="/legislation">
+        <ListItem component={Link} to="/legislation">
           <ListItemText primary="Legislation" />
         </ListItem>
 
         {/* 2. FIX: Added component="li" to satisfy MUI/TypeScript requirements for the clickable List Item */}
-        <ListItem button component="li" onClick={handleOfficialsClick}> 
+        <ListItem component="li" onClick={handleOfficialsClick}> 
           <ListItemText primary="Elected Officials" />
           {openOfficials ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
 
         <Collapse in={openOfficials} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button component={Link} to="/house-of-representatives">
+            <ListItem component={Link} to="/house-of-representatives">
               <ListItemText primary="House of Representatives" />
             </ListItem>
-            <ListItem button component={Link} to="/senators">
+            <ListItem component={Link} to="/senators">
               <ListItemText primary="Senators" />
             </ListItem>
-            <ListItem button component={Link} to="/president">
+            <ListItem component={Link} to="/president">
               <ListItemText primary="President" />
             </ListItem>
-            <ListItem button component={Link} to="/vice-president">
+            <ListItem component={Link} to="/vice-president">
               <ListItemText primary="Vice President" />
             </ListItem>
-            <ListItem button component={Link} to="/scotus">
+            <ListItem component={Link} to="/scotus">
               <ListItemText primary="SCOTUS" />
             </ListItem>
           </List>
         </Collapse>
-        <ListItem button component={Link} to="/educational-resources">
+        <ListItem component={Link} to="/educational-resources">
           <ListItemText primary="Educational Resources" />
         </ListItem>
-        <ListItem button component={Link} to="/interactive-map">
+        <ListItem component={Link} to="/interactive-map">
           <ListItemText primary="Interactive Map" />
         </ListItem>
       </List>
