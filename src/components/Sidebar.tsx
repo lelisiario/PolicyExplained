@@ -7,7 +7,13 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
-const Sidebar = ({ isOpen, handleDrawerToggle }) => {
+// 1. FIX: Define the required types for the component's props
+interface SidebarProps {
+  isOpen: boolean;
+  handleDrawerToggle: () => void;
+}
+
+const Sidebar = ({ isOpen, handleDrawerToggle }: SidebarProps) => {
   const [openOfficials, setOpenOfficials] = useState(false);
 
   const handleOfficialsClick = () => {
@@ -42,10 +48,13 @@ const Sidebar = ({ isOpen, handleDrawerToggle }) => {
         <ListItem button component={Link} to="/legislation">
           <ListItemText primary="Legislation" />
         </ListItem>
-        <ListItem button onClick={handleOfficialsClick}>
+
+        {/* 2. FIX: Added component="li" to satisfy MUI/TypeScript requirements for the clickable List Item */}
+        <ListItem button component="li" onClick={handleOfficialsClick}> 
           <ListItemText primary="Elected Officials" />
           {openOfficials ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
+
         <Collapse in={openOfficials} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem button component={Link} to="/house-of-representatives">
