@@ -1,5 +1,15 @@
 {
+  "name": "policyexplained",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm run build && node dist/server.js",
+    "build": "tsc && vite build",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "vite",
+    "server": "nodemon --watch src/server --exec ts-node src/server/index.ts"
+  },
   "dependencies": {
+    "22": "^0.0.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
@@ -30,8 +40,10 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
-    "@vitejs/plugin-react": "^4.4.1",
+    "@vitejs/plugin-react": "^5.0.4",
+    "concurrently": "^9.2.1",
     "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
     "vite": "^7.1.9"
   }
 }
