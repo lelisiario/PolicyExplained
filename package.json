@@ -1,12 +1,13 @@
 {
   "name": "policyexplained",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "start": "npm run build && node dist/server.js",
     "build": "tsc && vite build",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "vite",
-    "server": "nodemon --watch src/server --exec ts-node src/server/index.ts"
+    "server": "nodemon --watch src/server --exec ts-node --esm src/server/index.ts"
   },
   "dependencies": {
     "22": "^0.0.0",

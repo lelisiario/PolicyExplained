@@ -25,7 +25,7 @@ app.use(express.json()); // Allows server to parse JSON bodies
 
 // --- 3. Simple Test Route (API Sanity Check) ---
 // This route just confirms the server is running and can access the key.
-app.get('/api/test', (req: Request, res: Response) => {
+app.get('/api/test', (_req: Request, res: Response) => {
     res.json({
         message: "PolicyExplained Backend is running!",
         keyStatus: API_KEY ? 'Key Found' : 'Key Missing'
