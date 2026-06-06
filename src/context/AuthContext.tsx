@@ -1,11 +1,24 @@
-import React, { createContext, useState, useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { createContext, useState, useEffect, ReactNode } from "react";
+import { onAuthStateChanged, User } from "firebase/auth"; // 1. Imported the User type from Firebase
 import { auth } from "../firebase";
 
-export const AuthContext = createContext();
+// 2. The Interface lines go right here at the top!
+interface AuthContextType {
+  currentUser: User | null;
+  loading: boolean;
+}
 
-const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+interface AuthProviderProps {
+  children: ReactNode; // Explicitly types the React children components
+}
+
+// Now TypeScript knows exactly what 'AuthContextType' means
+export const AuthContext = createContext<AuthContextType | null>(null);
+
+// 3. Apply the type to the incoming props object
+const AuthProvider = ({ children }: AuthProviderProps) => {
+  // 4. Tell the state it can hold a Firebase 'User' object or 'null'
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
