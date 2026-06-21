@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { fetchBills } from "../utils/congressApi";
+import { fetchBills } from "../server/routes/congressApi";
 
 const LegislationList = () => {
-  const [bills, setBills] = useState([]);
+  const [bills, setBills] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
