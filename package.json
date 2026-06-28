@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "npm run build && node dist/server/index.js",
+    "start": "npm run build && node dist/index.js",
     "build": "vite build && tsc -p tsconfig.server.json",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "vite",
