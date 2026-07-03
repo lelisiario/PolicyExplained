@@ -1,38 +1,71 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
-import { onAuthStateChanged, User } from "firebase/auth"; // 1. Imported the User type from Firebase
+import { 
+  onAuthStateChanged, 
+  User, 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, 
+  signInWithPopup, 
+  GoogleAuthProvider, 
+  signOut,
+  UserCredential 
+} from "firebase/auth";
 import { auth } from "../firebase";
 
-// 2. The Interface lines go right here at the top!
+// 1. Add the authentication functions to our TypeScript interface
 interface AuthContextType {
   currentUser: User | null;
   loading: boolean;
+  signup: (email: string, pass: string) => Promise<UserCredential>;
+  login: (email: string, pass: string) => Promise<UserCredential>;
+  loginWithGoogle: () => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 interface AuthProviderProps {
-  children: ReactNode; // Explicitly types the React children components
+  children: ReactNode;
 }
 
-// Now TypeScript knows exactly what 'AuthContextType' means
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-// 3. Apply the type to the incoming props object
-const AuthProvider = ({ children }: AuthProviderProps) => {
-  // 4. Tell the state it can hold a Firebase 'User' object or 'null'
+const provider = new GoogleAuthProvider();
+
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // 2. Define the core authentication handlers
+  const signup = (email: string, pass: string) => {
+    return createUserWithEmailAndPassword(auth, email, pass);
+  };
+
+  const login = (email: string, pass: string) => {
+    return signInWithEmailAndPassword(auth, email, pass);
+  };
+
+  const loginWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error("Google Auth Error:", error);
+      throw error;
+    }
+  };
+
+  const logout = () => {
+    return signOut(auth);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
     });
-
-    // Cleanup the listener on unmount
     return unsubscribe;
   }, []);
 
+  // 3. Share everything through the Provider value
   return (
-    <AuthContext.Provider value={{ currentUser, loading }}>
+    <AuthContext.Provider value={{ currentUser, loading, signup, login, loginWithGoogle, logout }}>
       {!loading && children}
     </AuthContext.Provider>
   );
