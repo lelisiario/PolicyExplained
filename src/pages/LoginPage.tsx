@@ -96,10 +96,11 @@ function Login() {
           onClick={() => setIsSigningUp(!isSigningUp)} 
           style={{ background: "none", border: "none", color: "#007bff", textDecoration: "underline", cursor: "pointer", padding: 0 }}
         >
-          {isSigningUp ? "Sign In here" : "Sign Up here"}
+          {isSigningUp ? "Sign In here" : "Sign Up hee"}
         </button>
       </p>
     </div>
+    
   );
 }
 
