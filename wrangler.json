@@ -1,0 +1,11 @@
+{
+  "name": "policyexplained",
+  "compatibility_date": "2026-08-01",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "policy-explained-db",
+      "database_id": "452098ad-33c7-4bcf-877a-2a3e9c0ee04a"
+    }
+  ]
+}

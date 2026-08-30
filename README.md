@@ -11,7 +11,7 @@ To maintain full transparency and keep development milestones on track, the plat
 | Phase | Component | Status | Target Tech |
 | :--- | :--- | :--- | :--- |
 | **Phase 1** | Project Scope, UI Framework, & Basic Layout | **Complete** | HTML5, CSS3, React |
-| **Phase 2** | User Identity & Secure Authentication | **In Progress** | OAuth, Node.js, Express |
+| **Phase 2** | Legislation/Legislator import functionality, User Identity & Secure Authentication | **In Progress** | OAuth, Node.js, Express |
 | **Phase 3** | Third-Party API Engineering & Data Pipelines | **Planned** | REST APIs, JSON Parsing |
 | **Phase 4** | Advanced Features & Notification Pipelines | **Planned** | Twilio/SendGrid, Web Security |
 | **Phase 5** | AI Integration & Accessibility Audits | **Planned** | LLM API, ARIA compliance |
