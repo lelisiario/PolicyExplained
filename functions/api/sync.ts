@@ -1,18 +1,18 @@
-import type { D1Database, PagesFunction, Response as CFResponse } from '@cloudflare/workers-types';
+import type { D1Database, EventContext } from '@cloudflare/workers-types';
 
 interface Env {
   DB: D1Database;
   CONGRESS_API_KEY: string;
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context): Promise<CFResponse> => {
+export const onRequestPost = async (context: EventContext<Env, any, any>) => {
   const apiKey = context.env.CONGRESS_API_KEY;
 
   if (!apiKey) {
     return new Response(JSON.stringify({ error: "Missing CONGRESS_API_KEY environment variable" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
-    }) as unknown as CFResponse;
+    });
   }
 
   try {
@@ -26,6 +26,20 @@ export const onRequestPost: PagesFunction<Env> = async (context): Promise<CFResp
 
     const data: any = await congressRes.json();
     const rawBills = data.bills || [];
+
+    await context.env.DB.exec(`
+      CREATE TABLE IF NOT EXISTS bills (
+        id TEXT PRIMARY KEY,
+        bill_number TEXT,
+        congress INTEGER,
+        title TEXT,
+        summary TEXT,
+        chamber TEXT,
+        status TEXT,
+        introduced_date TEXT,
+        update_date TEXT
+      );
+    `);
 
     const stmt = context.env.DB.prepare(`
       INSERT INTO bills (id, bill_number, congress, title, summary, chamber, status, introduced_date, update_date)
@@ -58,13 +72,13 @@ export const onRequestPost: PagesFunction<Env> = async (context): Promise<CFResp
 
     return new Response(
       JSON.stringify({ success: true, count: statements.length }),
-      { headers: { "Content-Type": "application/json" } }
-    ) as unknown as CFResponse;
+      { status: 200, headers: { "Content-Type": "application/json" } }
+    );
 
   } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
-    }) as unknown as CFResponse;
+    });
   }
 };
